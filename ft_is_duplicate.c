@@ -12,13 +12,13 @@
 
 #include "push_swap.h"
 
-int	ft_is_duplicate(t_stack *stack, int num)
+int	ft_is_duplicate(t_stack *stack_a, int num)
 {
-	while (stack)
+	while (stack_a)
 	{
-		if (stack->nbr == num)
+		if (stack_a->nbr == num)
 			return (write(2, "Error\n", 6), 0);
-		stack = stack->next;
+		stack_a = stack_a->next;
 	}
 	return (1);
 }

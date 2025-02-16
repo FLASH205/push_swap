@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_a.c                                             :+:      :+:    :+:   */
+/*   op_b.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,61 +12,61 @@
 
 #include "push_swap.h"
 
-void	swap_a(t_stack **stack_a)
+void	swap_b(t_stack **stack_b)
 {
 	t_stack	*f;
 	t_stack	*s;
 
-	f = (*stack_a);
-	s = (*stack_a)->next;
-	(*stack_a) = s;
+	f = (*stack_b);
+	s = (*stack_b)->next;
+	(*stack_b) = s;
 	f->next = s->next;
 	s->next = f;
-	write(1, "sa\n", 3);
+	write(1, "sb\n", 3);
 }
 
-void	rotate_a(t_stack **stack_a)
+void	rotate_b(t_stack **stack_b)
 {
 	t_stack	*f;
 	t_stack *l;
 	
-	f = (*stack_a);
+	f = (*stack_b);
 
-	(*stack_a) = f->next;
+	(*stack_b) = f->next;
 	f->next = NULL;
-	l = (*stack_a);
+	l = (*stack_b);
 	while (l->next)
 		l = l->next;
 	l->next = f;
-	write(1, "ra\n", 3);
+	write(1, "rb\n", 3);
 }
 
-void	reverse_rotate_a(t_stack **stack_a)
+void	reverse_rotate_b(t_stack **stack_b)
 {
 	t_stack *l;
 	t_stack	*f;
 	t_stack *pl;
 
-	l = (*stack_a);
+	l = (*stack_b);
 	while (l->next)
 		l = l->next;
-	f = (*stack_a);
-	pl = (*stack_a);
+	f = (*stack_b);
+	pl = (*stack_b);
 	while (pl->next != l)
 		pl = pl->next;
-	(*stack_a) = l;
+	(*stack_b) = l;
 	l->next = f;
 	pl->next = NULL;
-	write(1, "rra\n", 4);
+	write(1, "rrb\n", 4);
 }
 
-void	push_a(t_stack **stack_a, t_stack **stack_b)
+void	push_b(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*tmp;
 
-	tmp = (*stack_b);
-	(*stack_b) = (*stack_b)->next;
-	tmp->next = (*stack_a);
-	(*stack_a) = tmp;
-	write(1, "pa\n", 3);
+	tmp = (*stack_a);
+	(*stack_a) = (*stack_a)->next;
+	tmp->next = (*stack_b);
+	(*stack_b) = tmp;
+	write(1, "pb\n", 3);
 }

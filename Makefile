@@ -9,17 +9,20 @@ SRC =	\
 	ft_lstadd_back.c \
 	ft_lstsize.c \
 	ft_split.c \
-	op_a.c 
+	ft_sort.c \
+	op_a.c \
+	op_b.c \
+	move_min_to_top.c
 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): push_swap.c $(OBJ)
-	cc $(FLAG) $^ -o $@
+	gcc $(FLAG) $^ -o $@
 
 %.o: %.c push_swap.h
-	cc $(FLAG) -c $< -o $@
+	gcc $(FLAG) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)

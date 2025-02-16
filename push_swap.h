@@ -15,7 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>    //TODO!   Don't forget to remove this library!!!!!!!!!!!
+# include <stdio.h>    //?   Don't forget to remove this library!!!!!!!!!!!
 
 typedef struct s_stack
 {
@@ -27,15 +27,22 @@ typedef struct s_stack
 t_stack	*ft_lstnew(int num);
 void	ft_lstadd_back(t_stack **lst, t_stack *new);
 int		ft_check_error(char *str);
-int		ft_is_duplicate(t_stack *stack, int num);
+int		ft_is_duplicate(t_stack *stack_a, int num);
 long	ft_atoi(char *str);
 void	ft_clear_node(t_stack **lst);
 char	**ft_split(char *s, char c);
 int		count_w(char *s, char c);
 void	ft_free(char **split, int i);
-int		ft_lstsize(t_stack *stack);
-void	swap_a(t_stack **stack);
-void	rotate_a(t_stack **stack);
-void	reverse_rotate_a(t_stack **stack);
+size_t	ft_lstsize(t_stack *stack);
+void	ft_sort(t_stack **stack_a, t_stack **stack_b);
+void	swap_a(t_stack **stack_a);
+void	rotate_a(t_stack **stack_a);
+void	reverse_rotate_a(t_stack **stack_a);
+void	push_a(t_stack **stack_a, t_stack **stack_b);
+void	swap_b(t_stack **stack_b);
+void	rotate_b(t_stack **stack_b);
+void	reverse_rotate_b(t_stack **stack_b);
+void	push_b(t_stack **stack_a, t_stack **stack_b);
+void	move_min_to_top(t_stack **stack_a);
 
 #endif

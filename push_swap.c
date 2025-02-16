@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	split_argument(char	*arg, t_stack **stack)
+int	split_argument(char	*arg, t_stack **stack_a)
 {
 	int		cw;
 	int		i;
@@ -29,34 +29,13 @@ int	split_argument(char	*arg, t_stack **stack)
 		num = ft_atoi(arr[i]);
 		if (num == 2147483648)
 			return (ft_free(arr, cw), 0);
-		if (ft_is_duplicate(*stack, (int)num) == 0)
+		if (ft_is_duplicate(*stack_a, (int)num) == 0)
 			return (ft_free(arr, cw), 0);
-		ft_lstadd_back(stack, ft_lstnew((int)num));
+		ft_lstadd_back(stack_a, ft_lstnew((int)num));
 		i++;
 	}
 	ft_free(arr, i);
 	return (1);
-}
-
-void	ft_sort_three(t_stack **stack)
-{
-	int	f;
-	int	s;
-	int	t;
-
-	f = (*stack)->nbr;
-	s = (*stack)->next->nbr;
-	t = (*stack)->next->next->nbr;
-	if (f > s && t > f)
-		swap_a(stack);
-	else if (f > s && s < t)
-		rotate_a(stack);
-	else if (f < s && s > t)
-		reverse_rotate_a(stack);
-	else if (f > s && s > t)
-		(swap_a(stack), reverse_rotate_a(stack));
-	else if (f < s && s > t)
-		(swap_a(stack), rotate_a(stack));
 }
 
 int	ft_is_sorted(t_stack *stack)
@@ -70,36 +49,34 @@ int	ft_is_sorted(t_stack *stack)
 	return (1);
 }
 
-void	ft_sort(t_stack **stack)
-{
-	size_t	size;
-
-	size = ft_lstsize(*stack);
-	if (size == 2)
-		swap_a(stack);
-	else if (size == 3)
-		ft_sort_three(stack);
-}
-
 int	main(int argc, char *argv[])
 {
-	t_stack	*stack;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 	int		i;
 
 	if (argc == 1)
 		return (0);
-	stack = NULL;
+	stack_a = NULL;
+	stack_b = NULL;
 	i = 1;
 	while (i < argc)
 	{
 		if (ft_check_error(argv[i]) == 0)
-			return (ft_clear_node(&stack), 1);
-		if (split_argument(argv[i], &stack) == 0)
-			return (ft_clear_node(&stack), 1);
+			return (ft_clear_node(&stack_a), 1);
+		if (split_argument(argv[i], &stack_a) == 0)
+			return (ft_clear_node(&stack_a), 1);
 		i++;
 	}
-	if (ft_is_sorted(stack) == 0)
-		ft_sort(&stack);
-	ft_clear_node(&stack);
+	if (ft_is_sorted(stack_a) == 0)
+		ft_sort(&stack_a, &stack_b);
+	//?----------------------------- print nodes -----------------------------!//
+	printf("result is: ");
+	while (stack_a)
+	{
+		printf("%d ", stack_a->nbr);
+		stack_a = stack_a->next;
+	}
+	ft_clear_node(&stack_a);
 	return (0);
 }
