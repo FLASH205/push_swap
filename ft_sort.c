@@ -6,7 +6,7 @@
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 22:28:26 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/16 22:28:26 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/17 11:54:27 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_sort_three(t_stack **stack_a)
 		(swap_a(stack_a), rotate_a(stack_a));
 }
 
-void	ft_sort(t_stack **stack_a, t_stack **stack_b)
+void	ft_sort_least(t_stack **stack_a, t_stack **stack_b)
 {
 	size_t	size;
 
@@ -42,30 +42,17 @@ void	ft_sort(t_stack **stack_a, t_stack **stack_b)
 		swap_a(stack_a);
 	else if (size == 3)
 		ft_sort_three(stack_a);
-	else
+	else if (size <= 5)
 	{
-		while (size > 3)
+		move_min_to_top(stack_a);
+		push_b(stack_a, stack_b);
+		if (ft_lstsize(*stack_a) == 4)
 		{
 			move_min_to_top(stack_a);
 			push_b(stack_a, stack_b);
-			size--;
 		}
 		ft_sort_three(stack_a);
-		size = ft_lstsize(*stack_b);
-		while (*stack_b)
-			push_a(stack_a, stack_b);
+		push_a(stack_a, stack_b);
+		push_a(stack_a, stack_b);
 	}
-	//* else if (size <= 5)
-	//* {
-	//* 	move_min_to_top(stack_a);
-	//* 	push_b(stack_a, stack_b);
-	//* 	if (ft_lstsize(*stack_a) == 4)
-	//* 	{
-	//* 		move_min_to_top(stack_a);
-	//* 		push_b(stack_a, stack_b);
-	//* 	}
-	//* 	ft_sort_three(stack_a);
-	//* 	push_a(stack_a, stack_b);
-	//* 	push_a(stack_a, stack_b);
-	//* }
 }

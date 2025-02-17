@@ -6,7 +6,7 @@
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:14:31 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/14 18:03:02 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/17 15:05:18 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**ft_split(char *s, char c);
 int		count_w(char *s, char c);
 void	ft_free(char **split, int i);
 size_t	ft_lstsize(t_stack *stack);
-void	ft_sort(t_stack **stack_a, t_stack **stack_b);
+void	ft_sort_least(t_stack **stack_a, t_stack **stack_b);
 void	swap_a(t_stack **stack_a);
 void	rotate_a(t_stack **stack_a);
 void	reverse_rotate_a(t_stack **stack_a);
@@ -44,5 +44,7 @@ void	rotate_b(t_stack **stack_b);
 void	reverse_rotate_b(t_stack **stack_b);
 void	push_b(t_stack **stack_a, t_stack **stack_b);
 void	move_min_to_top(t_stack **stack_a);
+void	ft_indexing(t_stack **stack_a);
+void	ft_algo(t_stack **stack_a, t_stack **stack_b);
 
 #endif

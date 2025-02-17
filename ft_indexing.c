@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_indexing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 09:37:53 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/17 09:39:25 by ybahmaz          ###   ########.fr       */
+/*   Created: 2025/02/17 14:52:42 by ybahmaz           #+#    #+#             */
+/*   Updated: 2025/02/17 15:05:03 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long	ft_atoi(char *str)
+void	ft_indexing(t_stack **stack_a)
 {
-	int			i;
-	int			s;
-	long	r;
+	t_stack	*lst;
+	t_stack	*current;
+	int		i;
 
-	i = 0;
-	while (str[i] == ' ' || str[i] == '\t')
-		i++;
-	s = 1;
-	if (str[i] == '-' || str[i] == '+')
+	lst = (*stack_a);
+	while (lst)
 	{
-		if (str[i] == '-')
-			s = -1;
-		i++;
+		current = (*stack_a);
+		i = 0;
+		while (current)
+		{
+			if (lst->nbr > current->nbr)
+				i++;
+			current = current->next;
+		}
+		lst->index = i;
+		lst = lst->next;
 	}
-	r = 0;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		r = r * 10 + str[i] - '0';
-		if ((r > 2147483647 && s == 1) || (r > 2147483648 && s == -1))
-			return (write(2, "Error\n", 6), 2147483648);
-		i++;
-	}
-	r = r * s;
-	return (r);
 }

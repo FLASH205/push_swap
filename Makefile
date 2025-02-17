@@ -12,17 +12,19 @@ SRC =	\
 	ft_sort.c \
 	op_a.c \
 	op_b.c \
-	move_min_to_top.c
+	move_min_to_top.c \
+	ft_indexing.c \
+	ft_algo.c
 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): push_swap.c $(OBJ)
-	gcc $(FLAG) $^ -o $@
+	cc $(FLAG) $^ -o $@
 
 %.o: %.c push_swap.h
-	gcc $(FLAG) -c $< -o $@
+	cc $(FLAG) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
