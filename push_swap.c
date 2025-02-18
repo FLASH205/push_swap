@@ -6,7 +6,7 @@
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:14:00 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/18 15:37:09 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/18 17:51:03 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	ft_sort_number(t_stack *stack_a, t_stack *stack_b)
 		else
 			ft_algo(&stack_a, &stack_b, 25);
 	}
+	ft_clear_node(&stack_a);
 }
 
 int	main(int argc, char *argv[])
@@ -84,5 +85,7 @@ int	main(int argc, char *argv[])
 	}
 	if (ft_is_sorted(stack_a) == 0)
 		ft_sort_number(stack_a, stack_b);
-	return (ft_clear_node(&stack_a), ft_clear_node(&stack_b), 0);
+	else
+		ft_clear_node(&stack_a);
+	return (0);
 }
