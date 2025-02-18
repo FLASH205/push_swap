@@ -6,7 +6,7 @@
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 15:34:45 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/17 16:07:08 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/18 14:54:10 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	swap_b(t_stack **stack_b)
 void	rotate_b(t_stack **stack_b)
 {
 	t_stack	*f;
-	t_stack *l;
-	
+	t_stack	*l;
+
 	if (ft_lstsize(*stack_b) < 2)
 		return ;
 	f = (*stack_b);
@@ -46,9 +46,9 @@ void	rotate_b(t_stack **stack_b)
 
 void	reverse_rotate_b(t_stack **stack_b)
 {
-	t_stack *l;
+	t_stack	*l;
 	t_stack	*f;
-	t_stack *pl;
+	t_stack	*pl;
 
 	if (ft_lstsize(*stack_b) < 2)
 		return ;
@@ -68,7 +68,8 @@ void	reverse_rotate_b(t_stack **stack_b)
 void	push_b(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*tmp;
-	if (stack_a == NULL)
+
+	if (stack_a == NULL || !*stack_a)
 		return ;
 	tmp = (*stack_a);
 	(*stack_a) = (*stack_a)->next;

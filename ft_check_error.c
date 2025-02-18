@@ -6,7 +6,7 @@
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 09:09:24 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/14 13:06:04 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:16:21 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int	ft_check_error(char *str)
 		return (write(2, "Error\n", 6), 0);
 	while (str[i])
 	{
+		if (str[i] >= '0' && str[i] <= '9')
+		{
+			if (str[i + 1] == '+' || str[i + 1] == '-')
+				return (write(2, "Error\n", 6), 0);
+		}
 		if (str[i] == '-' || str[i] == '+')
 		{
 			if (!(str[i + 1] >= '0' && str[i + 1] <= '9') || str[i + 1] == ' ')

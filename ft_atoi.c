@@ -6,7 +6,7 @@
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:37:53 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/17 09:39:25 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/18 09:10:25 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 long	ft_atoi(char *str)
 {
-	int			i;
-	int			s;
+	int		i;
+	int		s;
 	long	r;
 
 	i = 0;

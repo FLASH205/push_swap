@@ -9,7 +9,7 @@ SRC =	\
 	ft_lstadd_back.c \
 	ft_lstsize.c \
 	ft_split.c \
-	ft_sort.c \
+	ft_sort_least.c \
 	op_a.c \
 	op_b.c \
 	move_min_to_top.c \

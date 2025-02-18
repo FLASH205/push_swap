@@ -6,7 +6,7 @@
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:14:00 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/17 18:28:54 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:37:09 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,20 @@ int	ft_is_sorted(t_stack *stack)
 	return (1);
 }
 
+void	ft_sort_number(t_stack *stack_a, t_stack *stack_b)
+{
+	if (ft_lstsize(stack_a) <= 5)
+		ft_sort_least(&stack_a, &stack_b);
+	else
+	{
+		ft_indexing(&stack_a);
+		if (ft_lstsize(stack_a) <= 100)
+			ft_algo(&stack_a, &stack_b, 11);
+		else
+			ft_algo(&stack_a, &stack_b, 25);
+	}
+}
+
 int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
@@ -69,30 +83,6 @@ int	main(int argc, char *argv[])
 		i++;
 	}
 	if (ft_is_sorted(stack_a) == 0)
-	{
-		if (ft_lstsize(stack_a) <= 5)
-			ft_sort_least(&stack_a, &stack_b);
-		else if (ft_lstsize(stack_a) <= 100)
-		{
-			ft_indexing(&stack_a);
-			ft_algo(&stack_a, &stack_b);
-		}
-	}
-	
-	//?----------------------------- print nodes -----------------------------!//
-	//printf("stack a: ");
-	//while (stack_a)
-	//{
-	//	printf("%d ", stack_a->nbr);
-	//	stack_a = stack_a->next;
-	//}
-	//printf("\nstack b: ");
-	//while (stack_b)
-	//{
-	//	printf("%d ", stack_b->nbr);
-	//	stack_b = stack_b->next;
-	//}
-	ft_clear_node(&stack_a);
-	ft_clear_node(&stack_b);
-	return (0);
+		ft_sort_number(stack_a, stack_b);
+	return (ft_clear_node(&stack_a), ft_clear_node(&stack_b), 0);
 }

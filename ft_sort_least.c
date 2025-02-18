@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort.c                                          :+:      :+:    :+:   */
+/*   ft_sort_least.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 22:28:26 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/17 11:54:27 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/18 14:51:11 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ void	ft_sort_three(t_stack **stack_a)
 	f = (*stack_a)->nbr;
 	s = (*stack_a)->next->nbr;
 	t = (*stack_a)->next->next->nbr;
-	if (f > s && f < t && s < t)		//!	sa
+	if (f > s && f < t && s < t)
 		swap_a(stack_a);
-	else if (f > s && s < t && f > t)	//!	ra
+	else if (f > s && s < t && f > t)
 		rotate_a(stack_a);
-	else if (f > t && s > t && f < s)	//!	rra
-		reverse_rotate_a(stack_a);	
-	else if (f > s && s > t && f > t)			//! sa	rra
+	else if (f > t && s > t && f < s)
+		reverse_rotate_a(stack_a);
+	else if (f > s && s > t && f > t)
 		(swap_a(stack_a), reverse_rotate_a(stack_a));
-	else if (f < s && s > t && f < t)	//!	sa	ra
+	else if (f < s && s > t && f < t)
 		(swap_a(stack_a), rotate_a(stack_a));
 }
 

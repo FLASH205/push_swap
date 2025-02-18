@@ -6,7 +6,7 @@
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 12:53:20 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/17 18:15:44 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/18 11:49:22 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_stack	*ft_find_max(t_stack *stack_b)
 {
 	t_stack	*max;
-	
+
 	max = stack_b;
 	while (stack_b)
 	{
@@ -54,31 +54,48 @@ void	ft_sort_large(t_stack **stack_b)
 	}
 }
 
-void	ft_algo(t_stack **stack_a, t_stack **stack_b)
+int	check_stack(t_stack	*stack)
+{
+	size_t	size;
+	size_t	i;
+	size_t	r;
+
+	size = ft_lstsize(stack);
+	i = 0;
+	r = 0;
+	while (i < size / 2)
+	{
+		if (stack->index > stack->next->index)
+			r++;
+		i++;
+		stack = stack->next;
+	}
+	if (r > size / 3)
+		return (0);
+	return (1);
+}
+
+void	ft_algo(t_stack **stack_a, t_stack **stack_b, int range)
 {
 	size_t	i;
-	int		range;
+	int		r;
 
 	i = 0;
-	range = 11;
+	r = check_stack(*stack_a);
 	while (*stack_a)
 	{
 		if (i >= (*stack_a)->index)
-		{
-			push_b(stack_a, stack_b);
-			i++;
-		}
+			(push_b(stack_a, stack_b), i++);
 		else if (i + range >= (*stack_a)->index)
 		{
 			(push_b(stack_a, stack_b), rotate_b(stack_b));
 			i++;
 		}
+		else if (r == 0)
+			reverse_rotate_a(stack_a);
 		else
 			rotate_a(stack_a);
 	}
 	while (*stack_b)
-	{
-		ft_sort_large(stack_b);
-		push_a(stack_a, stack_b);
-	}
+		(ft_sort_large(stack_b), push_a(stack_a, stack_b));
 }
