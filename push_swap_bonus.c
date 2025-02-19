@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:14:00 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/19 09:24:47 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/19 18:17:45 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 int	split_argument(char	*arg, t_stack **stack_a)
 {
@@ -68,12 +68,15 @@ int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
+	t_op	*op;
 	int		i;
+	char	*line;
 
 	if (argc == 1)
 		return (0);
 	stack_a = NULL;
 	stack_b = NULL;
+	op = NULL;
 	i = 1;
 	while (i < argc)
 	{
@@ -83,9 +86,32 @@ int	main(int argc, char *argv[])
 			return (ft_clear_node(&stack_a), 1);
 		i++;
 	}
-	if (ft_is_sorted(stack_a) == 0)
-		ft_sort_number(stack_a, stack_b);
+	line = get_next_line(0);
+	while (line)
+	{
+		if (ft_valid_op(line) == 0)
+			return (free(line), ft_clear_node(&stack_a), 1);
+		ft_add_op(&op, ft_new_op(line));
+		line = get_next_line(0);
+	}
+	while (op)
+	{
+		ft_instaction(&stack_a, &stack_b, op);
+		op = op->next;
+	}
+	//t_stack *lst = stack_a;
+	//while (lst)
+	//{
+	//	printf("%d ", lst->nbr);
+	//	lst = lst->next;
+	//}
+	if (ft_is_sorted(stack_a) && stack_b == NULL)
+		(write(1, "OK\n", 3), ft_clear_node(&stack_a));
 	else
-		ft_clear_node(&stack_a);
+		(write(1, "KO\n", 3), ft_clear_node(&stack_a));
+	//if (ft_is_sorted(stack_a) == 0)
+	//	ft_sort_number(stack_a, stack_b);
+	//else
+	//	(write(1, "OK\n", 3), ft_clear_node(&stack_a));
 	return (0);
 }
