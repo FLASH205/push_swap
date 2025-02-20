@@ -6,7 +6,7 @@
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:14:31 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/19 17:42:01 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/20 15:12:28 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>    //?   Don't forget to remove this library!!!!!!!!!!!
+#include <stdio.h>    //?   Don't forget to remove this library!!!!!!!!!!!
 
-# ifndef BUFFER_SIZE
 #  define BUFFER_SIZE  1
-# endif
 
 typedef struct s_stack
 {
@@ -50,7 +48,6 @@ char	**ft_split(char *s, char c);
 int		count_w(char *s, char c);
 void	ft_free(char **split, int i);
 size_t	ft_lstsize(t_stack *stack);
-void	ft_sort_least(t_stack **stack_a, t_stack **stack_b);
 void	swap_a(t_stack **stack_a);
 void	rotate_a(t_stack **stack_a);
 void	reverse_rotate_a(t_stack **stack_a);
@@ -59,12 +56,11 @@ void	swap_b(t_stack **stack_b);
 void	rotate_b(t_stack **stack_b);
 void	reverse_rotate_b(t_stack **stack_b);
 void	push_b(t_stack **stack_a, t_stack **stack_b);
-void	ft_indexing(t_stack **stack_a);
-void	ft_algo(t_stack **stack_a, t_stack **stack_b, int range);
 int		ft_valid_op(char *line);
 int		ft_strcmp(char *s1, char *s2);
 void	ft_add_op(t_op **op, t_op *new);
 t_op	*ft_new_op(char *line);
 void	ft_instaction(t_stack **stack_a, t_stack **stack_b, t_op *op);
+void	ft_clear_op(t_op **op);
 
 #endif

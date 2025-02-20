@@ -6,7 +6,7 @@
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:55:27 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/19 10:22:08 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/20 11:36:31 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,4 @@ void	ft_clear_node(t_stack **stack)
 		free(*stack);
 		*stack = tmp;
 	}
-	*stack = NULL;
 }

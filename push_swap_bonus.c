@@ -6,7 +6,7 @@
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:14:00 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/19 18:17:45 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/20 17:44:11 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,46 @@ int	split_argument(char	*arg, t_stack **stack_a)
 	return (1);
 }
 
-int	ft_is_sorted(t_stack *stack)
+int	ft_is_sorted(t_stack *stack_a)
 {
-	while (stack->next)
+	t_stack	*tmpstk;
+
+	tmpstk = stack_a;
+	while (tmpstk && tmpstk->next)
 	{
-		if (stack->nbr > stack->next->nbr)
+		if (tmpstk->nbr > tmpstk->next->nbr)
 			return (0);
-		stack = stack->next;
+		tmpstk = tmpstk->next;
 	}
 	return (1);
 }
 
-void	ft_sort_number(t_stack *stack_a, t_stack *stack_b)
+int	ft_read_input(t_stack **stack_a, t_stack **stack_b, t_op **op)
 {
-	if (ft_lstsize(stack_a) <= 5)
-		ft_sort_least(&stack_a, &stack_b);
-	else
+	t_op	*optmp;
+	char	*line;
+
+	line = get_next_line(0);
+	while (line)
 	{
-		ft_indexing(&stack_a);
-		if (ft_lstsize(stack_a) <= 100)
-			ft_algo(&stack_a, &stack_b, 11);
-		else
-			ft_algo(&stack_a, &stack_b, 25);
+		if (ft_valid_op(line) == 0)
+			return (free(line), get_next_line(-1),
+				ft_clear_node(stack_a), ft_clear_op(op), 0);
+		ft_add_op(op, ft_new_op(line));
+		line = get_next_line(0);
 	}
-	ft_clear_node(&stack_a);
+	optmp = *op;
+	while (optmp)
+	{
+		ft_instaction(stack_a, stack_b, optmp);
+		optmp = optmp->next;
+	}
+	if (ft_is_sorted(*stack_a) && *stack_b == NULL)
+		(write(1, "OK\n", 3), ft_clear_op(op), ft_clear_node(stack_a));
+	else
+		(write(1, "KO\n", 3), ft_clear_op(op),
+			ft_clear_node(stack_a), ft_clear_node(stack_b));
+	return (1);
 }
 
 int	main(int argc, char *argv[])
@@ -70,48 +86,21 @@ int	main(int argc, char *argv[])
 	t_stack	*stack_b;
 	t_op	*op;
 	int		i;
-	char	*line;
 
 	if (argc == 1)
 		return (0);
 	stack_a = NULL;
 	stack_b = NULL;
 	op = NULL;
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (++i < argc)
 	{
 		if (ft_check_error(argv[i]) == 0)
 			return (ft_clear_node(&stack_a), 1);
 		if (split_argument(argv[i], &stack_a) == 0)
 			return (ft_clear_node(&stack_a), 1);
-		i++;
 	}
-	line = get_next_line(0);
-	while (line)
-	{
-		if (ft_valid_op(line) == 0)
-			return (free(line), ft_clear_node(&stack_a), 1);
-		ft_add_op(&op, ft_new_op(line));
-		line = get_next_line(0);
-	}
-	while (op)
-	{
-		ft_instaction(&stack_a, &stack_b, op);
-		op = op->next;
-	}
-	//t_stack *lst = stack_a;
-	//while (lst)
-	//{
-	//	printf("%d ", lst->nbr);
-	//	lst = lst->next;
-	//}
-	if (ft_is_sorted(stack_a) && stack_b == NULL)
-		(write(1, "OK\n", 3), ft_clear_node(&stack_a));
-	else
-		(write(1, "KO\n", 3), ft_clear_node(&stack_a));
-	//if (ft_is_sorted(stack_a) == 0)
-	//	ft_sort_number(stack_a, stack_b);
-	//else
-	//	(write(1, "OK\n", 3), ft_clear_node(&stack_a));
+	if (ft_read_input(&stack_a, &stack_b, &op) == 0)
+		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:14:31 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/19 09:13:17 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/20 15:13:15 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>    //?   Don't forget to remove this library!!!!!!!!!!!
+#include <stdio.h>    //?   Don't forget to remove this library!!!!!!!!!!!
 
 typedef struct s_stack
 {

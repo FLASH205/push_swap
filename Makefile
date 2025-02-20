@@ -1,7 +1,7 @@
 NAME = push_swap
 BNAME = checker
 
-FLAG = -Wextra -Werror -Wall 
+FLAG = -Wextra -Werror -Wall -fsanitize=address
 
 SRC =	\
 	ft_atoi.c \
@@ -27,18 +27,16 @@ BSRC =	\
 	ft_lstadd_back_bonus.c \
 	ft_lstsize_bonus.c \
 	ft_split_bonus.c \
-	ft_sort_least_bonus.c \
 	op_a_bonus.c \
 	op_b_bonus.c \
-	ft_indexing_bonus.c \
-	ft_algo_bonus.c \
 	get_next_line_bonus.c \
 	get_next_line_utils_bonus.c \
 	ft_valid_op_bonus.c \
 	ft_strcmp_bonus.c \
 	ft_add_op_bonus.c \
 	ft_new_op_bonus.c \
-	ft_instaction_bonus.c
+	ft_instaction_bonus.c \
+	ft_clear_op_bonus.c
 
 OBJ = $(SRC:.c=.o)
 BOBJ = $(BSRC:.c=.o)
