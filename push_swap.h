@@ -6,7 +6,7 @@
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:14:31 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/20 15:13:15 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/21 17:55:25 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-#include <stdio.h>    //?   Don't forget to remove this library!!!!!!!!!!!
 
 typedef struct s_stack
 {
@@ -28,7 +27,7 @@ t_stack	*ft_lstnew(int num);
 void	ft_lstadd_back(t_stack **lst, t_stack *new);
 int		ft_check_error(char *str);
 int		ft_is_duplicate(t_stack *stack_a, int num);
-long	ft_atoi(char *str);
+long	ft_atoi(char *str); 
 void	ft_clear_node(t_stack **lst);
 char	**ft_split(char *s, char c);
 int		count_w(char *s, char c);

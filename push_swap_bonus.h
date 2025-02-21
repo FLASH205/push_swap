@@ -6,7 +6,7 @@
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:14:31 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/20 15:12:28 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/21 11:15:12 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-#include <stdio.h>    //?   Don't forget to remove this library!!!!!!!!!!!
 
-#  define BUFFER_SIZE  1
+# define BUFFER_SIZE  1
 
 typedef struct s_stack
 {
@@ -26,12 +25,11 @@ typedef struct s_stack
 	struct s_stack	*next;
 }					t_stack;
 
-typedef	struct s_op
+typedef struct s_op
 {
 	char		*op;
 	struct s_op	*next;
 }	t_op;
-
 
 char	*get_next_line(int fd);
 char	*ft_strchr(char *str);
